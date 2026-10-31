@@ -1,0 +1,10 @@
+.vscode/**
+.tool-versions
+.DS_Store
+src/**
+test/**
+tsconfig.json
+*.vsix
+**/*.map
+node_modules/**/README.md
+node_modules/**/*.d.ts

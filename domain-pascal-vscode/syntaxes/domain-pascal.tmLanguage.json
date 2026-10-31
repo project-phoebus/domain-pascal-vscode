@@ -1,0 +1,62 @@
+{
+    "name": "Domain Pascal",
+    "scopeName": "source.pascal",
+    "patterns": [{
+        "include": "#keywords"
+    }, {
+        "include": "#strings"
+    }, {
+        "include": "#comments"
+    }, {
+        "include": "#pragmas"
+    }, {
+    }],
+    "repository": {
+        "keywords": {
+            "patterns": [{
+                "name": "keyword.control.pascal",
+                "match": "(?i)\\b(program|procedure|function|var|const|type|begin|end|if|then|else|while|do|repeat|until|for|to|downto|case|of|goto|label|with)\\b"
+            }, {
+                "name": "storage.type.pascal",
+                "match": "(?i)\\b(integer|real|boolean|char|string|array|record|set|file|pointer|nil|in|out|univ|extern)\\b"
+            }, {
+                "name": "constant.language.pascal",
+                "match": "(?i)\\b(true|false)\\b"
+            }, {
+                "name": "constant.numeric.hex.pascal",
+                "match": "16#[0-9A-Fa-f]+"
+            }, {
+                "name": "pragma.language.pascal",
+                "match": "(?i)\\b(\\%eject)\\b"
+            }]
+        },
+        "strings": {
+            "name": "string.quoted.single.pascal",
+            "begin": "'",
+            "end": "'",
+            "patterns": [{
+                "name": "constant.character.escape.pascal",
+                "match": "''"
+            }]
+        },
+        "comments": {
+            "patterns": [{
+                "name": "comment.line.double-slash.pascal",
+                "match": "//.*$"
+            }, {
+                "name": "comment.block.pascal.parens",
+                "begin": "\\(\\*",
+                "end": "\\*\\)"
+            },
+            {
+                "name": "comment.block.pascal.curly",
+                "begin": "\\{",
+                "end": "\\}"
+            }]
+        },
+        "pragmas": {
+            "name": "keyword.control.directive.pascal",
+            "match": "%[A-Z]+;"
+        }
+    }
+}

@@ -1,0 +1,74 @@
+{
+    "name": "domain-pascal",
+    "displayName": "Domain Pascal",
+    "description": "Syntax highlighting and symbol navigation for Apollo's Domain Pascal",
+    "repository": "https://github.com/domainos-archeology/domain-pascal-vscode",
+    "version": "0.1.0",
+    "scripts": {
+      "compile": "tsc -p .",
+      "watch": "tsc -watch -p .",
+      "test": "npm run compile && node test/check-symbols.js",
+      "vscode:prepublish": "npm run compile",
+      "package": "vsce package -o domain-pascal.vsix",
+      "deploy": "npm run package && code --install-extension domain-pascal.vsix",
+      "undeploy": "code --uninstall-extension undefined_publisher.domain-pascal",
+      "redeploy": "npm run undeploy && npm run deploy"
+    },
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "main": "./out/extension.js",
+    "activationEvents": [
+        "onLanguage:domain-pascal",
+        "workspaceContains:**/*.pas"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "domain-pascal",
+            "aliases": ["Domain Pascal", "domain-pascal"],
+            "extensions": [".pas",".dp"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "domain-pascal",
+            "scopeName": "source.pascal",
+            "path": "./syntaxes/domain-pascal.tmLanguage.json"
+        }],
+        "commands": [{
+            "command": "domainPascal.rebuildIndex",
+            "title": "Domain Pascal: Rebuild Workspace Symbol Index"
+        }],
+        "configuration": {
+            "title": "Domain Pascal",
+            "properties": {
+                "domainPascal.workspaceIndex.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Index every Pascal file in the workspace so Go to Symbol in Workspace and cross-file Go to Definition work."
+                },
+                "domainPascal.workspaceIndex.exclude": {
+                    "type": "string",
+                    "default": "**/node_modules/**",
+                    "description": "Glob of files to leave out of the workspace symbol index."
+                },
+                "domainPascal.includeRoots": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "default": [],
+                    "description": "Directories to treat as the Domain/OS root when resolving absolute %INCLUDE paths such as /sys/ins/base.ins.pas."
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "web-tree-sitter": "0.24.7"
+    },
+    "devDependencies": {
+        "@types/node": "^22.19.11",
+        "@types/vscode": "1.85.0",
+        "typescript": "^5.9.3"
+    }
+}
