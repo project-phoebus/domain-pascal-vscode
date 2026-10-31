@@ -1,3 +1,4 @@
 [submodule "tree-sitter-pascal"]
 	path = tree-sitter-pascal
-	url = git@github.com:Isopod/tree-sitter-pascal.git
+	url = https://github.com/project-phoebus/tree-sitter-pascal.git
+	branch = domain-pascal
